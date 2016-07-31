@@ -1,0 +1,48 @@
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 1
+hostname: awesomechat
+name: awesomechat
+provider: virtualbox
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: "../services/auth"
+      to: "/home/vagrant/awesome-chat/auth"
+    - map: "../services/chat"
+      to: "/home/vagrant/awesome-chat/chat"
+    - map: "../services/mail"
+      to: "/home/vagrant/awesome-chat/mail"
+    - map: "../services/rtc"
+      to: "/home/vagrant/awesome-chat/rtc"
+
+sites:
+    - map: auth.awesome-chat.app
+      to: "/home/vagrant/awesome-chat/auth/public"
+    - map: chat.awesome-chat.app
+      to: "/home/vagrant/awesome-chat/chat/public"
+    - map: mail.awesome-chat.app
+      to: "/home/vagrant/awesome-chat/mail/public"
+    - map: rtc.awesome-chat.app
+      to: "/home/vagrant/awesome-chat/rtc/public"
+
+databases:
+    - circleflock
+
+# blackfire:
+#     - id: foo
+#       token: bar
+#       client-id: foo
+#       client-token: bar
+
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
